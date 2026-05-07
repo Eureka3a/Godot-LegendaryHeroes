@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://c062gbm3sncl7"]
+
+[node name="Node2D" type="Node2D" unique_id=1901402461]
+
+[node name="Label" type="Label" parent="." unique_id=133903445]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "这是一段测试文本，用于测试git版本控制"
