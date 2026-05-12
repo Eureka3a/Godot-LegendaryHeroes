@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://wqydb5bl1em3" path="res://assets/sprites/char_blue_1.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://8lpffd44qv7t" path="res://scripts/player.gd" id="1_g2els"]
+[ext_resource type="Script" uid="uid://cr501fenv6stc" path="res://scripts/classes/StateMachine.gd" id="3_qhqgy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
 size = Vector2(10, 25)
@@ -289,3 +290,7 @@ one_shot = true
 [node name="JumpRequestTimer" type="Timer" parent="." unique_id=1751759985]
 wait_time = 0.1
 one_shot = true
+
+[node name="StateMachine" type="Node" parent="." unique_id=1229814099]
+script = ExtResource("3_qhqgy")
+metadata/_custom_type_script = "uid://cr501fenv6stc"

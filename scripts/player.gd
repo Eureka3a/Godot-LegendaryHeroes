@@ -1,5 +1,12 @@
 extends CharacterBody2D
 
+enum State {
+	IDLE,
+	RUNNING,
+	JUMP,
+	FALL,
+}
+
 const RUN_SPEED := 160.0
 const FLOOR_ACCELERATION := RUN_SPEED / 0.2
 const AIR_ACCELERATION := RUN_SPEED / 0.02
