@@ -526,7 +526,7 @@ tile_map_data = PackedByteArray("AAAeAA4AAAABAAQAAAAeAA0AAAADAAIAAAAdAA4AAAABAAQ
 tile_set = SubResource("TileSet_0vacu")
 
 [node name="Player" parent="." unique_id=1102461486 instance=ExtResource("1_ar2rp")]
-position = Vector2(74, 72)
+position = Vector2(214, 79)
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1709814177]
 limit_smoothed = true

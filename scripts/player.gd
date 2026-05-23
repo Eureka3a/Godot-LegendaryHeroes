@@ -5,9 +5,10 @@ enum State {
 	RUNNING,
 	JUMP,
 	FALL,
+	LANDING,
 }
 
-const GROUND_STATES := [State.IDLE, State.RUNNING]
+const GROUND_STATES := [State.IDLE, State.RUNNING, State.LANDING]
 const RUN_SPEED := 160.0
 const FLOOR_ACCELERATION := RUN_SPEED / 0.2
 const AIR_ACCELERATION := RUN_SPEED / 0.02
@@ -41,6 +42,9 @@ func tick_physics(state: State, delta: float) -> void:#在_physics_process上修
 		State.FALL:
 			move(default_gravity, delta)
 			
+		State.LANDING:
+			stand(delta) #下落动画播放时不接收玩家输入
+			
 	is_first_tick = false
 			
 func move(gravity: float, delta: float) -> void:#从_physics_process中分离出来的封装
@@ -54,7 +58,14 @@ func move(gravity: float, delta: float) -> void:#从_physics_process中分离出
 		
 	move_and_slide()
 	
-
+func stand(delta: float) -> void:
+	var acceleration := FLOOR_ACCELERATION if is_on_floor() else AIR_ACCELERATION
+	velocity.x = move_toward(velocity.x, 0.0, acceleration * delta)
+	velocity.y += default_gravity * delta
+	
+	move_and_slide()
+	
+	
 func get_next_state(state: State) -> State:
 	var can_jump := is_on_floor() or coyote_timer.time_left > 0
 	var should_jump := can_jump and jump_request_timer.time_left > 0
@@ -83,7 +94,11 @@ func get_next_state(state: State) -> State:
 			
 		State.FALL:
 			if is_on_floor():
-				return State.IDLE if is_still else State.RUNNING
+				return State.LANDING if is_still else State.RUNNING
+				
+		State.LANDING:
+			if not animation_player.is_playing():
+				return State.IDLE
 		
 	return state
 
@@ -108,5 +123,8 @@ func transition_state(from: State, to: State) -> void:
 			animation_player.play("full")
 			if from in GROUND_STATES:
 				coyote_timer.start()
+				
+		State.LANDING:
+			animation_player.play("landing")
 		
 	is_first_tick = true
