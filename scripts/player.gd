@@ -15,7 +15,7 @@ const RUN_SPEED := 160.0
 const FLOOR_ACCELERATION := RUN_SPEED / 0.2
 const AIR_ACCELERATION := RUN_SPEED / 0.1
 const JUMP_VELOCITY := -320.0
-const WALL_JUMP_VELOCITY := Vector2(500, -320)
+const WALL_JUMP_VELOCITY := Vector2(400, -280)
 
 var default_gravity := ProjectSettings.get("physics/2d/default_gravity") as float
 var is_first_tick := false
@@ -83,6 +83,9 @@ func stand(gravity: float, delta: float) -> void:
 	move_and_slide()
 	
 	
+func can_wall_slide() -> bool:#玩家与墙碰撞且墙与头脚部碰撞才进入滑墙状态
+	return is_on_wall() and hand_checker.is_colliding() and foot_checker.is_colliding()
+	
 func get_next_state(state: State) -> State:
 	var can_jump := is_on_floor() or coyote_timer.time_left > 0
 	var should_jump := can_jump and jump_request_timer.time_left > 0
@@ -112,7 +115,7 @@ func get_next_state(state: State) -> State:
 		State.FALL:
 			if is_on_floor():
 				return State.LANDING if is_still else State.RUNNING
-			if is_on_wall() and hand_checker.is_colliding() and foot_checker.is_colliding(): #玩家与墙碰撞且墙与头脚部碰撞才进入滑墙状态
+			if can_wall_slide(): 
 				return State.WALL_SLIDING
 				
 		State.LANDING:
@@ -122,7 +125,7 @@ func get_next_state(state: State) -> State:
 				return State.IDLE
 				
 		State.WALL_SLIDING:
-			if jump_request_timer.time_left > 0:
+			if jump_request_timer.time_left > 0:#可加 and state_machine.state_time > 3.0 / 60.0，在反复跳跃时不会跳过滑墙动画
 				return State.WALL_JUMP
 			if is_on_floor():
 				return State.LANDING #切换成IDLE有些生硬
@@ -130,7 +133,7 @@ func get_next_state(state: State) -> State:
 				return State.FALL
 				
 		State.WALL_JUMP:
-			if is_on_wall() and not is_first_tick:
+			if can_wall_slide() and not is_first_tick:
 				return State.WALL_SLIDING
 			if velocity.y >= 0:
 				return State.FALL
@@ -176,9 +179,9 @@ func transition_state(from: State, to: State) -> void:
 			velocity.x *= get_wall_normal().x
 			jump_request_timer.stop()
 			
-	if to == State.WALL_JUMP:
-		Engine.time_scale = 0.3
-	if from == State.WALL_JUMP:
-		Engine.time_scale = 1.0
+	#if to == State.WALL_JUMP: #慢动作
+		#Engine.time_scale = 0.3
+	#if from == State.WALL_JUMP:
+		#Engine.time_scale = 1.0
 		
 	is_first_tick = true
