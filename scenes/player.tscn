@@ -562,6 +562,7 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D" unique_id=1102461486]
+collision_layer = 2
 script = ExtResource("1_g2els")
 
 [node name="Graphcs" type="Node2D" parent="." unique_id=1171845969]
