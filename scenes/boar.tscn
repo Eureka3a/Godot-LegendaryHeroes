@@ -5,6 +5,12 @@
 [ext_resource type="Texture2D" uid="uid://bbbpjnoqlrgfi" path="res://assets/boar/Idle-Sheet.png" id="2_mn0bm"]
 [ext_resource type="Texture2D" uid="uid://b8oftgqnm3xqf" path="res://assets/boar/Walk-Base-Sheet.png" id="3_4ea8c"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ea8c"]
+size = Vector2(21, 22)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r6548"]
+size = Vector2(38, 6)
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_mn0bm"]
 radius = 11.0
 
@@ -251,6 +257,28 @@ collision_mask = 3
 [node name="FloorChecker" type="RayCast2D" parent="Graphics" parent_id_path=PackedInt32Array(249259084) index="3" unique_id=293169931]
 position = Vector2(-15, -1)
 target_position = Vector2(0, 5)
+
+[node name="Hitbox" parent="Graphics" parent_id_path=PackedInt32Array(249259084) index="4" unique_id=1388144613]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Graphics/Hitbox" index="0" unique_id=369840143]
+position = Vector2(-0.5, -11)
+shape = SubResource("RectangleShape2D_4ea8c")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Graphics/Hitbox" index="1" unique_id=1510564845]
+position = Vector2(0, -9)
+shape = SubResource("RectangleShape2D_r6548")
+
+[node name="Hurtbox" parent="Graphics" parent_id_path=PackedInt32Array(249259084) index="5" unique_id=1888617346]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Graphics/Hurtbox" index="0" unique_id=956742188]
+position = Vector2(-0.5, -11)
+shape = SubResource("RectangleShape2D_4ea8c")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Graphics/Hurtbox" index="1" unique_id=1838459673]
+position = Vector2(0, -9)
+shape = SubResource("RectangleShape2D_r6548")
 
 [node name="CollisionShape2D" parent="." index="1" unique_id=125450304]
 position = Vector2(0, -11)
