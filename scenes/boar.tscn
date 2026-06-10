@@ -290,3 +290,5 @@ libraries/ = SubResource("AnimationLibrary_rlyfy")
 [node name="CalmDownTimer" type="Timer" parent="." index="4" unique_id=349432317]
 wait_time = 2.5
 one_shot = true
+
+[connection signal="hurt" from="Graphics/Hurtbox" to="." method="_on_hurtbox_hurt"]
