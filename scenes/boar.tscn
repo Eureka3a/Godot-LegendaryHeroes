@@ -242,7 +242,7 @@ target_position = Vector2(0, 13)
 position = Vector2(-11, -12)
 rotation = 1.5707964
 target_position = Vector2(0, 88)
-collision_mask = 2
+collision_mask = 3
 
 [node name="FloorChecker" type="RayCast2D" parent="Graphics" parent_id_path=PackedInt32Array(2088980850) index="3" unique_id=228166412]
 position = Vector2(-15, -1)
