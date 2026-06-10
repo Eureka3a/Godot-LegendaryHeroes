@@ -1,13 +1,16 @@
 [gd_scene format=3 uid="uid://bsg4ejh3x6tpo"]
 
-[ext_resource type="Texture2D" uid="uid://cfa0sjroaqx58" path="res://汉堡/8方向汉堡-Sheet.png" id="1_pchkq"]
+[ext_resource type="Texture2D" uid="uid://drn7kfdo2i2jy" path="res://assets/burger/Hamburger_Rotate_16Dri_SpriteSheet.png" id="1_pchkq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fsptx"]
+radius = 12.0
 
 [sub_resource type="Animation" id="Animation_hiqje"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/path = NodePath("Graphics/Sprite2D:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -19,7 +22,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/path = NodePath("Graphics/Sprite2D:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -31,7 +34,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/path = NodePath("Graphics/Sprite2D:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -42,14 +45,14 @@ tracks/2/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_ckrjf"]
-resource_name = "hamburger_idle"
+resource_name = "humburger_rotation"
 length = 1.6
 loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/path = NodePath("Graphics/Sprite2D:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -61,7 +64,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/path = NodePath("Graphics/Sprite2D:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -73,7 +76,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/path = NodePath("Graphics/Sprite2D:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -86,22 +89,20 @@ tracks/2/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jd1od"]
 _data = {
 &"RESET": SubResource("Animation_hiqje"),
-&"hamburger_idle": SubResource("Animation_ckrjf")
+&"humburger_rotation": SubResource("Animation_ckrjf")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_fsptx"]
-radius = 12.0
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=2142833209]
 
-[node name="hamburger" type="CharacterBody2D" unique_id=57448182]
+[node name="Graphics" type="Node2D" parent="." unique_id=844091186]
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1841907340]
+[node name="Sprite2D" type="Sprite2D" parent="Graphics" unique_id=1301165787]
 texture = ExtResource("1_pchkq")
 hframes = 16
-region_rect = Rect2(0, 0, 46, 62)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2118510991]
-libraries/ = SubResource("AnimationLibrary_jd1od")
-autoplay = &"hamburger_idle"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1290542304]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=734323374]
 shape = SubResource("CircleShape2D_fsptx")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1698277589]
+libraries/ = SubResource("AnimationLibrary_jd1od")
+autoplay = &"humburger_rotation"

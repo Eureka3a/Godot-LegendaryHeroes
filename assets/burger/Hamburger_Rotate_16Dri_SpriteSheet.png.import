@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cfa0sjroaqx58"
-path="res://.godot/imported/8方向汉堡-Sheet.png-f1576c705feede55c4b990493068c4ad.ctex"
+uid="uid://drn7kfdo2i2jy"
+path="res://.godot/imported/Hamburger_Rotate_16Dri_SpriteSheet.png-f6b8b099fe485084be8dcfea65a692fc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://汉堡/8方向汉堡-Sheet.png"
-dest_files=["res://.godot/imported/8方向汉堡-Sheet.png-f1576c705feede55c4b990493068c4ad.ctex"]
+source_file="res://assets/burger/Hamburger_Rotate_16Dri_SpriteSheet.png"
+dest_files=["res://.godot/imported/Hamburger_Rotate_16Dri_SpriteSheet.png-f6b8b099fe485084be8dcfea65a692fc.ctex"]
 
 [params]
 
