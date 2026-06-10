@@ -28,7 +28,7 @@ const WALL_JUMP_VELOCITY := Vector2(400, -280)
 
 var default_gravity := ProjectSettings.get("physics/2d/default_gravity") as float
 var is_first_tick := false
-var is_combo_requested := false #?????????????????????????????????????
+var is_combo_requested := false
 
 @onready var graphcs: Node2D = $Graphcs
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -38,13 +38,15 @@ var is_combo_requested := false #?????????????????????????????????????
 @onready var foot_checker: RayCast2D = $Graphcs/FootChecker
 @onready var state_machine: StateMachine = $StateMachine
 
-func _unhandled_input(event: InputEvent) -> void:
+
+func _unhandled_input(event: InputEvent) -> void: # 在 _input() 之后调用，且仅当事件未被 UI 或之前的节点标记为“已处理”时才会执行；用于处理“无人认领”的输入，例如玩家的移动/跳跃/攻击。
 	if event.is_action_pressed("jump"):
 		jump_request_timer.start()
 	if event.is_action_released("jump") and velocity.y < JUMP_VELOCITY / 2:
 		velocity.y = JUMP_VELOCITY / 2
+
 	if event.is_action_pressed("attack") and can_combo:
-		is_combo_requested = true 
+		is_combo_requested = true
 
 func tick_physics(state: State, delta: float) -> void:#在_physics_process上修改的
 	match state:
@@ -90,7 +92,7 @@ func move(gravity: float, delta: float) -> void:#从_physics_process中分离出
 		
 	move_and_slide()
 	
-func stand(gravity: float, delta: float) -> void: #在此期间玩家的输入失效，与move函数对应
+func stand(gravity: float, delta: float) -> void:
 	var acceleration := FLOOR_ACCELERATION if is_on_floor() else AIR_ACCELERATION
 	velocity.x = move_toward(velocity.x, 0.0, acceleration * delta)
 	velocity.y += gravity * delta
@@ -106,7 +108,7 @@ func get_next_state(state: State) -> State:
 	var should_jump := can_jump and jump_request_timer.time_left > 0
 	if should_jump:
 		return State.JUMP
-	
+		
 	if state in GROUND_STATES and not is_on_floor():
 		return State.FALL
 	
@@ -213,7 +215,6 @@ func transition_state(from: State, to: State) -> void:
 		#Engine.time_scale = 0.3
 	#if from == State.WALL_JUMP:
 		#Engine.time_scale = 1.0
-		
 		State.ATTACK_1:
 			animation_player.play("attack_1")
 			is_combo_requested = false
@@ -225,5 +226,5 @@ func transition_state(from: State, to: State) -> void:
 		State.ATTACK_2:
 			animation_player.play("attack_3")
 			is_combo_requested = false
-			
+		
 	is_first_tick = true

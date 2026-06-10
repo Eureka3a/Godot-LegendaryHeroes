@@ -15,7 +15,7 @@ enum State {
 func can_see_player() -> bool:
 	if not player_checker.is_colliding():
 		return false
-	return player_checker.get_collider() is Player #is Player用于确定射线碰到的为玩家实例
+	return player_checker.get_collider() is Player
 
 
 func tick_physics(state: State, delta: float) -> void:
