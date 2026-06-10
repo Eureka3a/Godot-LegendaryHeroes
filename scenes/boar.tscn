@@ -1,16 +1,14 @@
-[gd_scene format=3 uid="uid://dq1qs2vxfbftq"]
+[gd_scene format=3 uid="uid://chrqy6y0u1ysw"]
 
-[ext_resource type="PackedScene" uid="uid://r42sfvdet38o" path="res://scenes/enemy.tscn" id="1_tgiih"]
-[ext_resource type="Script" uid="uid://mbwq812w8wak" path="res://scripts/boar.gd" id="2_156ks"]
-[ext_resource type="Texture2D" uid="uid://bbbpjnoqlrgfi" path="res://assets/boar/Idle-Sheet.png" id="2_f7758"]
-[ext_resource type="Texture2D" uid="uid://y0bamhn470xa" path="res://assets/boar/Hit-Sheet.png" id="3_r6548"]
-[ext_resource type="Texture2D" uid="uid://w1u53dyv27w2" path="res://assets/boar/Run-Sheet.png" id="4_156ks"]
-[ext_resource type="Texture2D" uid="uid://b8oftgqnm3xqf" path="res://assets/boar/Walk-Base-Sheet.png" id="5_f7ac1"]
+[ext_resource type="PackedScene" uid="uid://ctb56jfnen1fr" path="res://scenes/enemy.tscn" id="1_tgiih"]
+[ext_resource type="Script" uid="uid://pyom8i7dhb42" path="res://scripts/boar.gd" id="2_4ea8c"]
+[ext_resource type="Texture2D" uid="uid://bbbpjnoqlrgfi" path="res://assets/boar/Idle-Sheet.png" id="2_mn0bm"]
+[ext_resource type="Texture2D" uid="uid://b8oftgqnm3xqf" path="res://assets/boar/Walk-Base-Sheet.png" id="3_4ea8c"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mn0bm"]
 radius = 11.0
 
-[sub_resource type="Animation" id="Animation_bb5y3"]
+[sub_resource type="Animation" id="Animation_r6548"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -22,7 +20,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("2_f7758")]
+"values": [ExtResource("2_mn0bm")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -49,7 +47,10 @@ tracks/2/keys = {
 "values": [0]
 }
 
-[sub_resource type="Animation" id="Animation_lp13s"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_156ks"]
+load_path = "res://.godot/imported/Hit-Sheet.png-3c48ec5fa013055802da64c13c6ca08f.ctex"
+
+[sub_resource type="Animation" id="Animation_f7ac1"]
 resource_name = "hit"
 length = 0.4
 step = 0.1
@@ -63,7 +64,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("3_r6548")]
+"values": [SubResource("CompressedTexture2D_156ks")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -90,7 +91,7 @@ tracks/2/keys = {
 "values": [0, 1, 2, 3]
 }
 
-[sub_resource type="Animation" id="Animation_4qjkf"]
+[sub_resource type="Animation" id="Animation_bb5y3"]
 resource_name = "idle"
 length = 0.4
 loop_mode = 1
@@ -105,7 +106,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("2_f7758")]
+"values": [ExtResource("2_mn0bm")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -132,7 +133,10 @@ tracks/2/keys = {
 "values": [0, 1, 2, 3]
 }
 
-[sub_resource type="Animation" id="Animation_41htl"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lp13s"]
+load_path = "res://.godot/imported/Run-Sheet.png-21e012d1588a96af796fed870d699926.ctex"
+
+[sub_resource type="Animation" id="Animation_4qjkf"]
 resource_name = "run"
 length = 0.6
 loop_mode = 1
@@ -147,7 +151,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("4_156ks")]
+"values": [SubResource("CompressedTexture2D_lp13s")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -174,7 +178,7 @@ tracks/2/keys = {
 "values": [0, 1, 2, 3, 4, 5]
 }
 
-[sub_resource type="Animation" id="Animation_rlyfy"]
+[sub_resource type="Animation" id="Animation_41htl"]
 resource_name = "walk"
 length = 0.6
 loop_mode = 1
@@ -189,7 +193,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("5_f7ac1")]
+"values": [ExtResource("3_4ea8c")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -216,46 +220,45 @@ tracks/2/keys = {
 "values": [0, 1, 2, 3, 4, 5]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_fc1cp"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rlyfy"]
 _data = {
-&"RESET": SubResource("Animation_bb5y3"),
-&"hit": SubResource("Animation_lp13s"),
-&"idle": SubResource("Animation_4qjkf"),
-&"run": SubResource("Animation_41htl"),
-&"walk": SubResource("Animation_rlyfy")
+&"RESET": SubResource("Animation_r6548"),
+&"hit": SubResource("Animation_f7ac1"),
+&"idle": SubResource("Animation_bb5y3"),
+&"run": SubResource("Animation_4qjkf"),
+&"walk": SubResource("Animation_41htl")
 }
 
-[node name="Boar" unique_id=1004184244 instance=ExtResource("1_tgiih")]
-script = ExtResource("2_156ks")
+[node name="Boar" unique_id=586491438 instance=ExtResource("1_tgiih")]
+script = ExtResource("2_4ea8c")
 
-[node name="Sprite2D" parent="Graphics" parent_id_path=PackedInt32Array(2088980850) index="0" unique_id=205059404]
+[node name="Sprite2D" parent="Graphics" parent_id_path=PackedInt32Array(249259084) index="0" unique_id=270486218]
 position = Vector2(1, -16)
-texture = ExtResource("2_f7758")
+texture = ExtResource("2_mn0bm")
 hframes = 4
 
-[node name="WallChecker" type="RayCast2D" parent="Graphics" parent_id_path=PackedInt32Array(2088980850) index="1" unique_id=1023167174]
-position = Vector2(-11, -12)
+[node name="WallChecker" type="RayCast2D" parent="Graphics" parent_id_path=PackedInt32Array(249259084) index="1" unique_id=249696806]
+position = Vector2(-10, -12)
 rotation = 1.5707964
-target_position = Vector2(0, 13)
+target_position = Vector2(9.536743e-07, 12.999999)
 
-[node name="PlayerChecker" type="RayCast2D" parent="Graphics" parent_id_path=PackedInt32Array(2088980850) index="2" unique_id=1137162433]
-position = Vector2(-11, -12)
+[node name="PlayerChecker" type="RayCast2D" parent="Graphics" parent_id_path=PackedInt32Array(249259084) index="2" unique_id=355361003]
+position = Vector2(-10, -12)
 rotation = 1.5707964
 target_position = Vector2(0, 88)
 collision_mask = 3
 
-[node name="FloorChecker" type="RayCast2D" parent="Graphics" parent_id_path=PackedInt32Array(2088980850) index="3" unique_id=228166412]
+[node name="FloorChecker" type="RayCast2D" parent="Graphics" parent_id_path=PackedInt32Array(249259084) index="3" unique_id=293169931]
 position = Vector2(-15, -1)
-rotation = 1.5707964
-target_position = Vector2(5, 0)
+target_position = Vector2(0, 5)
 
-[node name="CollisionShape2D" parent="." index="1" unique_id=2099746309]
+[node name="CollisionShape2D" parent="." index="1" unique_id=125450304]
 position = Vector2(0, -11)
 shape = SubResource("CircleShape2D_mn0bm")
 
-[node name="AnimationPlayer" parent="." index="2" unique_id=342242052]
-libraries/ = SubResource("AnimationLibrary_fc1cp")
+[node name="AnimationPlayer" parent="." index="2" unique_id=1561258299]
+libraries/ = SubResource("AnimationLibrary_rlyfy")
 
-[node name="CalmDownTimer" type="Timer" parent="." index="4" unique_id=1778057522]
+[node name="CalmDownTimer" type="Timer" parent="." index="4" unique_id=349432317]
 wait_time = 2.5
 one_shot = true
