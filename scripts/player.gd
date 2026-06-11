@@ -223,7 +223,7 @@ func transition_state(from: State, to: State) -> void:
 			animation_player.play("attack_2")
 			is_combo_requested = false
 			
-		State.ATTACK_2:
+		State.ATTACK_3:
 			animation_player.play("attack_3")
 			is_combo_requested = false
 		
